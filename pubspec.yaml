@@ -47,6 +47,8 @@ dependencies:
   intl: ^0.19.0
   url_launcher: ^6.3.0
   google_fonts: ^6.2.1
+  flutter_native_splash: ^2.4.1
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -110,3 +112,20 @@ flutter:
           weight: 500
         - asset: assets/fonts/Mirza-Bold.ttf
           weight: 700
+
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/logo-development.png
+  branding: assets/branding-development.png
+  color_dark: "#121212"
+  image_dark: assets/logo-development.png
+  branding_dark: assets/branding-development.png
+
+  android_12:
+    image: assets/logo-development.png
+    icon_background_color: "#ffffff"
+    image_dark: assets/logo-development.png
+    icon_background_color_dark: "#121212"
+
+  web: false

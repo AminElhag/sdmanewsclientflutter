@@ -1,7 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:sdmanewsclientflutter/features/news/cubit/news_list/news_list_cubit.dart';
+import 'package:sdmanewsclientflutter/features/news/pages/news_list_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'common/http_override.dart';
@@ -26,10 +29,17 @@ class MyApp extends StatelessWidget {
     final brightness = View.of(context).platformDispatcher.platformBrightness;
     TextTheme textTheme = createTextTheme(context, "Mirza", "Mirza");
     MaterialTheme theme = MaterialTheme(textTheme);
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: brightness == Brightness.light ? theme.light() : theme.dark(),
-      home: Row(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => NewsListCubit(),
+        )
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: brightness == Brightness.light ? theme.light() : theme.dark(),
+        home: const NewsListPage(),
+      ),
     );
   }
 }
