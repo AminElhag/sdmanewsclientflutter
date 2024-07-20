@@ -1,16 +1,13 @@
-# sdmanewsclientflutter
+يُطلعك التطبيق على ما يدور في العالم بشكل منسّق لكي تتعرّف على معلومات أكثر حول المواضيع التي تهمّك.
 
-A new Flutter project.
+يتضمن ما يلي:
 
-## Getting Started
+ملخّص أخبارك: استمتِع بتصفّح ملخّص أخبارك لتعرف بسهولة آخر مستجدّات الأخبار المهمّة بالنسبة إليك ليوفِّر لك ذلك الوقت والجهد، علمًا بأنه يتم تحديث هذا الملخّص على مدار اليوم لإطلاعك على أهم خمسة أخبار يهمّك أن تعرفها، بما في ذلك الأخبار المحليّة والوطنية والعالمية.
 
-This project is a starting point for a Flutter application.
+التغطية الكاملة للخبر: اطِّلع بشكل منسّق على التفاصيل الكاملة لأي خبر من الإنترنت وذلك بنقرة واحدة داخل تطبيق الذي يُبرز لك وجهات النظر المختلفة ويعرض المخطط الزمني للأحداث الرئيسية والأسئلة الشائعة والأشخاص المهمّين وغير ذلك من المعلومات.
 
-A few resources to get you started if this is your first Flutter project:
+المصادر الموثوقة: اطّلِع على محتوى إخباري عالي الجودة من مجموعة متنوعة من جهات النشر الموثوقة واستكشِف مصادر إخبارية جديدة لأوّل مرة.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+الأخبار المقترحة لك: تابِع من خلال هذا القسم مستجدّات المواضيع التي تهمّك، مثل الرياضة أو السياسة أو الأعمال أو التكنولوجيا أو الطقس.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+ميزة نؤمن أن المحتوى الصحفي الجيد لا يُقدّر بثمن.
