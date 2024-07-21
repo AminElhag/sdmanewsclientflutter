@@ -63,6 +63,7 @@ class _NewsListPageState extends State<NewsListPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("سدما"),
+        centerTitle: true,
       ),
       body: BlocConsumer<NewsListCubit, NewsListState>(
         listener: (context, state) {
@@ -110,48 +111,58 @@ class _NewsListPageState extends State<NewsListPage> {
                       errorMessage: errorMessage,
                       onRetry: () {
                         setState(() {
-                          page = 0;
-                          isEndOfPage = false;
-                          context.read<NewsListCubit>().getLastNewsList(page);
+                          retry(context);
                         });
                       },
                     )
-                  : Column(
-                      children: [
-                        Expanded(
-                          child: ListView.builder(
-                            controller: _controller,
-                            itemCount: apiList.length,
-                            scrollDirection: Axis.vertical,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              var item = apiList[index];
-                              if (index == apiList.length) {
-                                return const Padding(
-                                  padding: EdgeInsets.only(top: 10, bottom: 40),
-                                  child: Center(
-                                    child: CircularProgressIndicator(),
-                                  ),
+                  : RefreshIndicator(
+                      onRefresh: () async {
+                        retry(context);
+                      },
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: ListView.builder(
+                              controller: _controller,
+                              itemCount: apiList.length,
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                var item = apiList[index];
+                                if (index == apiList.length) {
+                                  return const Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 10, bottom: 40),
+                                    child: Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  );
+                                }
+                                return ShortNewsItem(
+                                  item: item,
+                                  onPressed: () {},
                                 );
-                              }
-                              return ShortNewsItem(
-                                item: item,
-                                onPressed: () {},
-                              );
-                            },
-                          ),
-                        ),
-                        if (isRequesting)
-                          const Padding(
-                            padding: EdgeInsets.only(top: 10, bottom: 40),
-                            child: Center(
-                              child: CircularProgressIndicator(),
+                              },
                             ),
-                          )
-                      ],
+                          ),
+                          if (isRequesting)
+                            const Padding(
+                              padding: EdgeInsets.only(top: 10, bottom: 40),
+                              child: Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            )
+                        ],
+                      ),
                     );
         },
       ),
     );
+  }
+
+  void retry(BuildContext context) {
+    page = 0;
+    isEndOfPage = false;
+    context.read<NewsListCubit>().getLastNewsList(page);
   }
 }
