@@ -8,6 +8,7 @@ class SVKey {
   static const mainUrl = "http://192.168.78.115:20202/";
   static const baseUrl = "${mainUrl}api/";
   static const getLastNewsList = "${baseUrl}news";
+  static const getNewsDetailsById = "$getLastNewsList/details";
 }
 
 class KKey {

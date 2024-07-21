@@ -1,9 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sdmanewsclientflutter/common_widget/empty_page.dart';
 import 'package:sdmanewsclientflutter/common_widget/error_page.dart';
 import 'package:sdmanewsclientflutter/features/news/cubit/news_list/news_list_cubit.dart';
 import 'package:sdmanewsclientflutter/features/news/model/short_news_model.dart';
+import 'package:sdmanewsclientflutter/features/news/pages/news_details_page.dart';
 import 'package:sdmanewsclientflutter/features/news/widget/shimmer_list.dart';
 import 'package:sdmanewsclientflutter/features/news/widget/short_news_item.dart';
 
@@ -115,46 +117,51 @@ class _NewsListPageState extends State<NewsListPage> {
                         });
                       },
                     )
-                  : RefreshIndicator(
-                      onRefresh: () async {
-                        retry(context);
-                      },
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: ListView.builder(
-                              controller: _controller,
-                              itemCount: apiList.length,
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              itemBuilder: (context, index) {
-                                var item = apiList[index];
-                                if (index == apiList.length) {
-                                  return const Padding(
-                                    padding:
-                                        EdgeInsets.only(top: 10, bottom: 40),
-                                    child: Center(
-                                      child: CircularProgressIndicator(),
-                                    ),
-                                  );
-                                }
-                                return ShortNewsItem(
-                                  item: item,
-                                  onPressed: () {},
-                                );
-                              },
-                            ),
-                          ),
-                          if (isRequesting)
-                            const Padding(
-                              padding: EdgeInsets.only(top: 10, bottom: 40),
-                              child: Center(
-                                child: CircularProgressIndicator(),
+                  : (apiList.isEmpty)
+                      ? const EmptyPage()
+                      : RefreshIndicator(
+                          onRefresh: () async {
+                            retry(context);
+                          },
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: ListView.builder(
+                                  controller: _controller,
+                                  itemCount: apiList.length,
+                                  scrollDirection: Axis.vertical,
+                                  shrinkWrap: true,
+                                  itemBuilder: (context, index) {
+                                    var item = apiList[index];
+                                    if (index == apiList.length) {
+                                      return const Padding(
+                                        padding: EdgeInsets.only(
+                                            top: 10, bottom: 40),
+                                        child: Center(
+                                          child: CircularProgressIndicator(),
+                                        ),
+                                      );
+                                    }
+                                    return ShortNewsItem(
+                                      item: item,
+                                      onPressed: () {
+                                        Navigator.push(context,
+                                            NewsDetailsPage.route(item.id));
+                                      },
+                                    );
+                                  },
+                                ),
                               ),
-                            )
-                        ],
-                      ),
-                    );
+                              if (isRequesting)
+                                const Padding(
+                                  padding: EdgeInsets.only(top: 10, bottom: 40),
+                                  child: Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                )
+                            ],
+                          ),
+                        );
         },
       ),
     );

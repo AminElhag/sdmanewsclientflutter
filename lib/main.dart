@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:sdmanewsclientflutter/features/news/cubit/news_details/news_details_cubit.dart';
 import 'package:sdmanewsclientflutter/features/news/cubit/news_list/news_list_cubit.dart';
 import 'package:sdmanewsclientflutter/features/news/pages/news_list_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -33,6 +34,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => NewsListCubit(),
+        ),
+        BlocProvider(
+          create: (context) => NewsDetailsCubit(),
         )
       ],
       child: MaterialApp(

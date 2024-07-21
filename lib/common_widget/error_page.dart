@@ -13,14 +13,14 @@ class ErrorPage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Spacer(),
+            const Spacer(),
             Image.asset("assets/images/man.png",width: 250,height: 250,),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Text(errorMessage),
             TextButton(onPressed: onRetry, child: Text("اعد المحاولة")),
-            Spacer()
+            const Spacer()
           ],
         ),
       ),
